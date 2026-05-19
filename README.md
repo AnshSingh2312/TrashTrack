@@ -67,7 +67,6 @@ TrashTrack/
 ├── backend/
 │   ├── app.py
 │   ├── face_recog_handler.py
-│   ├── yolov8s.pt
 │   ├── users/
 │   │   ├── user1.jpg
 │   │   ├── user2.jpg
