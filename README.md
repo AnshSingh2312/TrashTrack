@@ -326,7 +326,7 @@ These metrics show that the model performed well on the validation data included
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/TrashTrack.git
+git clone https://github.com/AnshSingh2312/TrashTrack.git
 cd TrashTrack
 ```
 
