@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Challans | TrashTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>    
+    <h1>TrashTrack</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('help') }}">Help</a>
+      <a href="{{ url_for('notifications') }}">Notifications</a>
+      <a href="{{ url_for('index') }}">Logout</a>
+    </nav>
+  </header>
+
+  <h1>My Challans</h1>
+  <main class="challan-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Complaint</th>
+          <th>Fine Amount</th>
+          <th>Payment</th>
+        </tr>
+      </thead>
+      <tbody id="challanContainer">
+        <!-- Challans will be populated here -->
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    // Fetch user's challans from server
+    fetch('/get-challans')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('challanContainer');
+        if (data.challans && data.challans.length > 0) {
+          data.challans.forEach((challan, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${challan.date}</td>
+              <td>${challan.location}</td>
+              <td>${challan.complain}</td>
+              <td>₹${challan.fine_amount}</td>
+              <td><a href="/payment/${index}" class="payment-link">Pay Now</a></td>
+            `;
+            container.appendChild(row);
+          });
+        } else {
+          container.innerHTML = '<tr><td colspan="5">No challans issued yet.</td></tr>';
+        }
+      });
+  </script>
+</body>
+</html>

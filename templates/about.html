@@ -1,0 +1,46 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TrashTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>    
+    <h1>TrashTrack</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('help') }}">Help</a>
+      <a href="{{ url_for('notifications') }}">Notifications</a>
+      <a href="{{ url_for('index') }}">Logout</a>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="heading">
+        <h1>About Us</h1>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <h2>Welcome To Our Website</h2>
+        <p>TrashTrack is a Website application designed to promote cleanliness by issuing fines for <br>
+          throwing dirt or litter on public roads. Our goal is to create cleaner, safer communities by holding<br>
+          individuals accountable for their actions. Whether you're reporting violations or issuing fines,<br>
+          TrashTrack makes it easy to enforce proper waste disposal and raise awareness about the importance of a clean environment.
+        </p>  
+        <button class="cta-button">Learn More</button>
+      </div>
+      <div class="hero-image">
+        <img src="https://cdn.searchenginejournal.com/wp-content/uploads/2022/01/about-us-page-examples-1-61fd8f9784626-sej.jpg">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 TrashTrack. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TrashTrack | Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="login--page">
+    <div class="login--container">  
+        <h1>Login</h1>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="input--group">
+                <input type="text" id="username" placeholder="Username" required>
+                <span class="input--icon">
+                    <img src="{{ url_for('static', filename='images/username.png') }}" height="20" alt="Username Icon">
+                </span>
+            </div>
+            <div class="input--group">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="input--icon">
+                    <img src="{{ url_for('static', filename='images/lock.png') }}" height="20" alt="Lock Icon">
+                </span>
+            </div>
+            <button type="submit" class="btnn">Login</button>
+        </form>
+    </div>  
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

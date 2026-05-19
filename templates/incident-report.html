@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Report Incident | TrashTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>    
+    <h1>TrashTrack</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('help') }}">Help</a>
+      <a href="{{ url_for('notifications') }}">Notifications</a>
+      <a href="{{ url_for('index') }}">Logout</a>
+    </nav>
+  </header>
+
+  <h1>Report Incident Form</h1>
+  <main class="form-container">
+    <form id="incidentForm" enctype="multipart/form-data">
+      <label for="incidentDate">Date of Incident:</label>
+      <input type="date" id="incidentDate" name="date" required>
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" placeholder="Enter location..." required>
+
+      <label for="description">Specify Littering Action:</label>
+      <textarea id="description" name="description" rows="4" placeholder="E.g., Throwing plastic on street..." required></textarea>
+
+      <label for="imageUpload">Upload an image of littering:</label>
+      <input type="file" id="imageUpload" name="image" accept="image/*" required>
+
+      <div id="previewContainer" style="margin-top: 10px;">
+        <img id="previewImage" src="" alt="Image Preview" style="max-width: 100%; display: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+      </div>        
+
+      <button type="submit">Submit Report</button>
+    </form>
+
+    <p id="resultMessage" class="status-msg"></p>
+  </main>
+
+  <script>
+    document.getElementById('incidentForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const resultBox = document.getElementById('resultMessage');
+      resultBox.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch('/detect-litter', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          resultBox.textContent = result.message || (result.success ? '✅ Littering detected and user fined.' : '❌ No littering detected.');
+          resultBox.classList.remove('error');
+        } else {
+          resultBox.textContent = 'Something went wrong.';
+          resultBox.classList.add('error');
+        }
+      } catch (err) {
+        resultBox.textContent = 'Network error. Please try again.';
+        resultBox.classList.add('error');
+      }
+    });
+
+    document.getElementById('imageUpload').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById('previewImage');
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

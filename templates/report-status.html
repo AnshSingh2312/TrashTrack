@@ -1,0 +1,65 @@
+<!-- templates/report-status.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incident Status | TrashTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>    
+    <h1>TrashTrack</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('help') }}">Help</a>
+      <a href="{{ url_for('notifications') }}">Notifications</a>
+      <a href="{{ url_for('index') }}">Logout</a>
+    </nav>
+  </header>
+  
+    <!-- <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('incident_report') }}">Report Incident</a>
+      <a href="#">Logout</a>
+    </nav> -->
+  </header>
+
+  <h1>View Incident Report Status</h1>
+  <main class="report-status-container">
+    <h2>Your Submitted Reports</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Uploads</th>
+          <th>Complaint</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in reports %}
+        <tr>
+          <td>
+            {% if report.image_url %}
+              <img src="{{ report.image_url }}" alt="Litter Image" class="report-image">
+            {% else %}
+              No Image
+            {% endif %}
+          </td>
+          <td>{{ report.description or "No description provided" }}</td>
+          <td>{{ report.date or "N/A" }}</td>
+          <td>
+            {% if report.status == "approved" %}
+              <span class="status approved">Approved</span>
+            {% else %}
+              <span class="status pending">Declined</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

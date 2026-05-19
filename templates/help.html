@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help | TrashTrack</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>TrashTrack</h1>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('about') }}">About Us</a>
+      <a href="{{ url_for('help') }}">Help</a>
+      <a href="{{ url_for('notifications') }}">Notifications</a>
+      <a href="{{ url_for('index') }}">Logout</a>
+    </nav>
+  </header>
+
+  <main class="help-page">
+    <section class="help-intro">
+        <h2>Welcome to TrashTrack Help Center</h2>
+        <p>Need help? Find answers to your questions below, or reach out to us directly.</p>
+    </section>
+
+    <section class="help-topics">
+        <h3>Popular Topics</h3>
+        <div class="topics-container">
+            <div class="topic-card">
+                <h4>Reporting an Incident</h4>
+                <p>Learn how to report incidents of littering and track fines.</p>
+                <a href="{{ url_for('incident_report') }}" class="btn">Report Incident</a>
+            </div>
+            <div class="topic-card">
+                <h4>View My Challans</h4>
+                <p>Check all issued fines and make payments easily.</p>
+                <a href="{{ url_for('my_challans') }}" class="btn">View Challans</a>
+            </div>
+            <div class="topic-card">
+                <h4>Contact Support</h4>
+                <p>If you need further assistance, feel free to reach out.</p>
+                <a href="mailto:support@trashtrack.com" class="btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h3>Frequently Asked Questions</h3>
+
+        <div class="faq-item">
+            <h4>How do I report littering?</h4>
+            <p>Visit the <a href="{{ url_for('incident_report') }}">Incident Report</a> page, enter the necessary details, and upload a photo.</p>
+        </div>
+        <div class="faq-item">
+            <h4>How can I make a payment for a fine?</h4>
+            <p>Go to the <a href="{{ url_for('my_challans') }}">My Challans</a> page and click the "Pay" button next to each fine.</p>
+        </div>
+        <div class="faq-item">
+            <h4>What if I receive a fine incorrectly?</h4>
+            <p>If you believe a fine was issued in error, please contact us through the <a href="{{ url_for('help') }}">Help Page</a>.</p>
+        </div>
+    </section>
+
+    <section class="contact-us">
+        <h3>Need More Help?</h3>
+        <p>If you cannot find the answers you're looking for, <a href="mailto:support@trashtrack.com">contact us directly</a> and we will assist you.</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 TrashTrack. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
